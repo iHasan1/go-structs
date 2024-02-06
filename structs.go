@@ -29,8 +29,8 @@ func (u *user) clearUserName() {
 }
 
 // Convention: a function used to create the struct object.
-func newUser(userFirstName string, userLastName string, userBirthdate string) user {
-	return user{
+func newUser(userFirstName string, userLastName string, userBirthdate string) *user {
+	return &user{
 		firstName: userFirstName,
 		lastName: userLastName,
 		birthdate: userBirthdate,
