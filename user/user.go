@@ -13,6 +13,12 @@ type User struct {
 	createdAt time.Time
 }
 
+type Admin struct {
+	email string
+	password string
+	User
+}
+
 // func (u user) outputUserDetails() ----> (u user) is the receiver
 func (u *User) OutputUserDetails() {
 	fmt.Println(u.firstName, u.lastName, u.birthdate, u.createdAt)
@@ -24,6 +30,18 @@ func (u *User) ClearUserName() {
 	u.lastName = ""
 }
 
+func NewAdmin(email string, password string) Admin {
+	return Admin{
+		email: email,
+		password: password,
+		User: User{
+			firstName: "admin",
+			lastName: "admin",
+			birthdate: "---",
+			createdAt: time.Now(),
+		},
+	}
+}
 // Convention: a function used to create the struct object.
 func New(userFirstName string, userLastName string, userBirthdate string) (*User, error) {
 	if userFirstName == "" || userLastName == "" || userBirthdate == "" {
