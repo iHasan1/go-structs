@@ -29,13 +29,17 @@ func (u *user) clearUserName() {
 }
 
 // Convention: a function used to create the struct object.
-func newUser(userFirstName string, userLastName string, userBirthdate string) *user {
+func newUser(userFirstName string, userLastName string, userBirthdate string) (*user, error) {
+	if userFirstName == "" || userLastName == "" || userBirthdate == "" {
+		return nil, errors.New("first name, last name and birthdate are required")
+	}
+
 	return &user{
 		firstName: userFirstName,
 		lastName: userLastName,
 		birthdate: userBirthdate,
 		createdAt: time.Now(),
-	}
+	}, nil
 }
 
 func main() {
@@ -46,7 +50,11 @@ func main() {
 	var appUser *user
 	
 	// struct literal notation
-	appUser = newUser(userFirstName, userLastName, userBirthdate)
+	appUser, err := newUser(userFirstName, userLastName, userBirthdate)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 
 	// outputUserDetails(&appUser)
 	appUser.outputUserDetails()
