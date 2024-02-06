@@ -43,7 +43,7 @@ func main() {
 	userLastName := getUserData("Please enter your last name: ")
 	userBirthdate := getUserData("Please enter your birthdate (MM/DD/YYYY): ")
 
-	var appUser user
+	var appUser *user
 	
 	// struct literal notation
 	appUser = newUser(userFirstName, userLastName, userBirthdate)
