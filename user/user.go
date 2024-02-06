@@ -25,7 +25,7 @@ func (u *User) ClearUserName() {
 }
 
 // Convention: a function used to create the struct object.
-func NewUser(userFirstName string, userLastName string, userBirthdate string) (*User, error) {
+func New(userFirstName string, userLastName string, userBirthdate string) (*User, error) {
 	if userFirstName == "" || userLastName == "" || userBirthdate == "" {
 		return nil, errors.New("first name, last name and birthdate are required")
 	}
