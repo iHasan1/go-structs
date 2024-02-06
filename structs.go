@@ -18,8 +18,14 @@ type user struct {
 }
 
 // func (u user) outputUserDetails() ----> (u user) is the receiver
-func (u user) outputUserDetails() {
+func (u *user) outputUserDetails() {
 	fmt.Println(u.firstName, u.lastName, u.birthdate, u.createdAt)
+}
+
+// if a pointer is not used as argument to the mutation method, then a copy is made and that is mutated instead of the original, so it is necessary to use a pointer to modify the original.
+func (u *user) clearUserName() {
+	u.firstName = ""
+	u.lastName = ""
 }
 
 func main() {
@@ -38,6 +44,8 @@ func main() {
 	}
 
 	// outputUserDetails(&appUser)
+	appUser.outputUserDetails()
+	appUser.clearUserName()
 	appUser.outputUserDetails()
 }
 
